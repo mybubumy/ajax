@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,13 +9,15 @@
     <link rel="shortcut icon" href="#" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <h1 class="header">Fetch</h1>
     <div class="title"></div>
     <h4></h4>
     <ul></ul>
-    
+
 </body>
+
 </html>
 <script>
     /********************************************************
@@ -25,11 +28,41 @@
     ********************************************************/
 
     //建立FETCH請求及實質內容
+    fetch('https://kktix.com/events.json', { method: 'get' })
+        .then(function (response) {
 
+            return response.json()
+
+        }).then(function (res) {
+
+            
+            render(res)
+
+
+        })
+        .catch(function (err) {
+            console.log(err)
+        })
 
     //建立回呼函式(call back function)來處理回應時的各項行為
+    
+    function render(res) {
 
+        let tit = res.title
+        let th = document.querySelector('.title')
+        th.innerHTML = tit
+        console.log(tit, th)
+
+        let entry = res.entry;
+        let ul = document.querySelector('ul');
+        let list = "";
+        entry.forEach(function (event, idx) {
+            let el = `<li>${event.title}</li>`;
+            list += el;
+        });
+        ul.innerHTML = list;
+    }
 
     //建立錯誤處理
 
-  </script>
+</script>
