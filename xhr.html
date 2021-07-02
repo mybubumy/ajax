@@ -27,7 +27,7 @@
 
     //宣告XHR物件
 var xhr=new XMLHttpRequest
-document.getElementsByClassName
+
 //建立設定
 xhr.open('GET','https://kktix.com/events.json');
 
@@ -45,7 +45,7 @@ xhr.send();
 
 function render(response){
     let res=JSON.parse(response)
-    console.log(res)
+    // console.log(res)
     let tit=res.title
     let th=document.querySelector('.title')
     th.innerHTML=tit
