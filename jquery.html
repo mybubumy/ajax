@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="#" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
       <!-------引入jQuery函式庫------->
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body>
     <h1 class="header">jQuery</h1>
@@ -26,18 +27,32 @@
     ********************************************************/
      
     //利用$.ajax()方法傳送請求並取得回應
-    /* $.ajax(
+     $.ajax(
       {
-        url:'',
-        type:'',
-        success:,
-        error:,
-        complete:
+        url:'https://kktix.com/events.json',
+        type:'get',
+        success:(response)=>{render(response)}
+       
       }
-    ) */   
+    ) 
 
     
     //利用$.get()方法傳送請求並取得回應
 
+    function render(res) {
 
+let tit = res.title
+let th = document.querySelector('.title')
+th.innerHTML = tit
+console.log(tit, th)
+
+let entry = res.entry;
+let ul = document.querySelector('ul');
+let list = "";
+entry.forEach(function (event, idx) {
+    let el = `<li>${event.title}</li>`;
+    list += el;
+});
+ul.innerHTML = list;
+}
   </script>
